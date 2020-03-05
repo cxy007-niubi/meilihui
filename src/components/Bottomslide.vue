@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="xy">
     <span>400-664-6698</span>
     <ul>
       <li>
@@ -21,8 +21,20 @@
     <span>浙IPC备16004860号-1</span>
   </div>
 </template>
+<script>
+export default {
+  mounted () {
+    var obox = document.querySelector('.xy')
+    if (obox.offsetTop < 100) {
+      console.log(obox)
+      obox.style.marginTop = '100px'
+      console.log(obox.style.marginTop)
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
-.box{
+.xy{
   margin: 0 auto;
   text-align: center;
   width: 100%;

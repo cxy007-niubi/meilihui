@@ -6,7 +6,7 @@
                    <li @click="handlelogin">
                        <span>登陆</span>
                    </li>
-                   <li class="search" @click='isShow=!isShow'>
+                   <li class="search" @click='$store.state.isShow=false'>
                         <van-search v-model="text" placeholder="FENDI最低可至五折"  input-align="left"/>
                    </li>
                    <li>
@@ -18,7 +18,7 @@
             <div class="bottom">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                              <router-link tag="div" activeClass="active" v-for="(data,index) in datalist" :key="index" 
+                              <router-link tag="div" activeClass="active" v-for="(data,index) in datalist" :key="index"
                              :to="data.path"  class="swiper-slide" >
                              {{data.name}}
                              </router-link>
@@ -51,55 +51,56 @@
 </template>
 <script>
 import axios from 'axios'
-import Vue from 'vue';
-import { Search } from 'vant';
-import { Toast } from 'vant';
+import Vue from 'vue'
+import { Search } from 'vant'
+// 下面这个
+// import { Search , Toast } from 'vant'
 
-Vue.use(Search);
+Vue.use(Search)
 export default {
   data () {
-   return{
-        datalist:[],
-        text:'',
-        isShow:true,
-        searchFindList:[]
-   }
+    return {
+      datalist: [],
+      text: '',
+      isShow: true,
+      searchFindList: []
+    }
   },
-  mounted(){
+  mounted () {
     //  这是获取导航栏的数据
-      axios.get('/appapi/silo/navigationAll/v3?timestamp=1583382604676&summary=3c061c95ac534cb4dd4abeda7e46d0e2').then(res=>{
-          var arr=[{ name: '推荐' }, ...res.data.lists, { name: '即将上新' }]
-          var pathlist=['/index','/silo/crossborder','/silo/women','/silo/men','/silo/cosmetics','/silo//silo/lifestyle','/silo/kids','/upcoming']
-          var datalist=[]
-           for(var i=0;i<arr.length;i++){
-            var obj={}
-            // console.log( arr[i].name,pathlist[i])
-            obj.path=pathlist[i]
-            obj.name=arr[i].name
-            datalist.push(obj)
-           }
-           console.log(datalist)
-           this.datalist=datalist
-        
-      })
-    //   这是获取的list列表的数据
-      axios.get("/appapi/search/searchFind/v3").then(res=>{
-          console.log(res.data.searchFindList)
-          this.searchFindList=res.data.searchFindList
-      })
-        //  new Swiper(".swiper-container",{})
-         
-  },
-  methods:{
-      handlelogin(){
-          this.$router.push('/login/mobile')
-      },
-      handlecar(){
-          this.$router.push('/shoppingcart')
-      },
-      onCancel(){
-          this.isShow=true
+    axios.get('/appapi/silo/navigationAll/v3?timestamp=1583382604676&summary=3c061c95ac534cb4dd4abeda7e46d0e2').then(res => {
+      var arr = [{ name: '推荐' }, ...res.data.lists, { name: '即将上新' }]
+      var pathlist = ['/index', '/silo/crossborder', '/silo/women', '/silo/men', '/silo/cosmetics', '/silo//silo/lifestyle', '/silo/kids', '/upcoming']
+      var datalist = []
+      for (var i = 0; i < arr.length; i++) {
+        var obj = {}
+        // console.log( arr[i].name,pathlist[i])
+        obj.path = pathlist[i]
+        obj.name = arr[i].name
+        datalist.push(obj)
       }
+      console.log(datalist)
+      this.datalist = datalist
+    })
+    //   这是获取的list列表的数据
+    axios.get('/appapi/search/searchFind/v3').then(res => {
+      console.log(res.data.searchFindList)
+      this.searchFindList = res.data.searchFindList
+    })
+    //  new Swiper(".swiper-container",{})
+  },
+  methods: {
+    handlelogin () {
+      this.$store.state.isShow = false
+      this.$router.push('/login/mobile')
+    },
+    handlecar () {
+      this.$store.state.isShow = false
+      this.$router.push('/shoppingcart')
+    },
+    onCancel () {
+      this.isShow = true
+    }
   }
 }
 </script>
@@ -110,6 +111,7 @@ export default {
         color: #fff;
     }
     div{
+
         width: 100%;
         .header{
             height: 80px;
@@ -121,7 +123,7 @@ export default {
                 height: 40px;
                 line-height: 50px;
                 ul{
-                    display: block;          
+                    display: block;
                     li{
                         text-align: center;
                         display: block;
@@ -132,11 +134,11 @@ export default {
                 }
             }
         }
-     
+
     }
     .active{
         text-decoration: underline
-        
+
     }
  .bottom{
      height: 40px;
@@ -149,9 +151,9 @@ export default {
          white-space: nowrap;
          .swiper-slide{
              padding: 0 10px;
-             font-size: 12px;  
+             font-size: 12px;
          }
-        
+
      }
  }
  .box{
@@ -161,7 +163,7 @@ export default {
          display: flex;
     .search{
         width: 80%;
-        box-sizing:border-box; 
+        box-sizing:border-box;
         margin-left: 15px;
     }
     .change{
@@ -192,5 +194,5 @@ export default {
         }
     }
  }
-   
+
 </style>
