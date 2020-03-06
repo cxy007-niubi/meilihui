@@ -27,7 +27,7 @@
             </div>
            </div>
            <!-- 点击搜索框显示的页面 -->
-           <div class="box" v-show="!isShow">
+           <!-- <div class="box" v-show="!isShow">
                <div class="cont">
                    <div class="search">
                    <van-search v-model="text" placeholder="请输入搜索关键词" />
@@ -46,7 +46,7 @@
                        </li>
                    </ul>
                </div>
-           </div>
+           </div> -->
        </div>
 </template>
 <script>
@@ -99,7 +99,9 @@ export default {
       this.$router.push('/shoppingcart')
     },
     onCancel () {
-      this.isShow = true
+      this.$store.state.isShow = true
+      this.$router.back()
+    //   this.isShow = true
     }
   }
 }

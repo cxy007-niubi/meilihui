@@ -27,7 +27,24 @@
 
     <!-- 这里是index下的search点击后 -->
     <div v-else>
-      <input type="text">
+               <div class="cont">
+                   <div class="search">
+                   <van-search v-model="text" placeholder="请输入搜索关键词" />
+                    </div>
+                    <div class="change" @click="isShow=true">
+                        取消
+                    </div>
+               </div>
+               <p>
+                   搜索发现
+               </p>
+               <div class="list">
+                   <ul>
+                       <li v-for="(data,index) in searchFindList" :key='index'>
+                           {{data.findKeyWord}}
+                       </li>
+                   </ul>
+               </div>
     </div>
   </div>
 </template>
