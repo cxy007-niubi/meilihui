@@ -11,20 +11,11 @@ import Upcoming from '@/views/Upcoming'
 import Login from '@/views/Login'
 import Error from '@/views/Error'
 import Shoppingcart from '@/views/Shoppingcart'
-import Qingcang from '@/views/Qingcang'
-import Dailynew from '@/views/Dailynew'
 Vue.use(VueRouter)
 const routes = [
   {
     path: '/index',
     component: Index
-  },
-  {
-    path: '/act/qingcang',
-    component: Qingcang
-  }, {
-    path: '/act/Dailynew',
-    component: Dailynew
   },
   {
     // 海外

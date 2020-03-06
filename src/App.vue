@@ -1,8 +1,8 @@
 <template>
   <div>
-    <tabbar v-show="show"></tabbar>
-    <router-view></router-view>
-    <bottomslideter v-show="show"></bottomslideter>
+    <tabbar></tabbar>
+   <router-view></router-view>
+   <bottomslideter></bottomslideter>
   </div>
 </template>
 <script>
@@ -12,11 +12,6 @@ export default {
   components: {
     tabbar,
     bottomslideter
-  },
-  computed: {
-    show () {
-      return this.$store.state.isShow
-    }
   }
 }
 </script>

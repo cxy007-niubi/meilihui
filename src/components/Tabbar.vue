@@ -6,7 +6,7 @@
                    <li @click="handlelogin">
                        <span>登陆</span>
                    </li>
-                   <li class="search" @click='$store.state.isShow=false'>
+                   <li class="search" @click='isShow=!isShow'>
                         <van-search v-model="text" placeholder="FENDI最低可至五折"  input-align="left"/>
                    </li>
                    <li>
@@ -27,7 +27,7 @@
             </div>
            </div>
            <!-- 点击搜索框显示的页面 -->
-           <!-- <div class="box" v-show="!isShow">
+           <div class="box" v-show="!isShow">
                <div class="cont">
                    <div class="search">
                    <van-search v-model="text" placeholder="请输入搜索关键词" />
@@ -46,15 +46,14 @@
                        </li>
                    </ul>
                </div>
-           </div> -->
+           </div>
        </div>
 </template>
 <script>
 import axios from 'axios'
 import Vue from 'vue'
 import { Search } from 'vant'
-// 下面这个
-// import { Search , Toast } from 'vant'
+// import { Search, Toast } from 'vant'
 
 Vue.use(Search)
 export default {
@@ -91,17 +90,13 @@ export default {
   },
   methods: {
     handlelogin () {
-      this.$store.state.isShow = false
       this.$router.push('/login/mobile')
     },
     handlecar () {
-      this.$store.state.isShow = false
       this.$router.push('/shoppingcart')
     },
     onCancel () {
-      this.$store.state.isShow = true
-      this.$router.back()
-    //   this.isShow = true
+      this.isShow = true
     }
   }
 }
@@ -113,7 +108,6 @@ export default {
         color: #fff;
     }
     div{
-
         width: 100%;
         .header{
             height: 80px;
